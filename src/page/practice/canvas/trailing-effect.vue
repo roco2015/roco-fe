@@ -18,7 +18,7 @@ export default {
       glowSize: 20,
       trailSize: 0.9,
       minTime: 3000,
-      maxTime: 20000,
+      maxTime: 10000,
       batchCount: 1, // 同时刷新出来一批的数量
       limitCount: 100,
       pullRadius: 500,
