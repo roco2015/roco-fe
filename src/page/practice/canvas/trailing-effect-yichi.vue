@@ -13,7 +13,7 @@ export default {
       width: 800,
       height: 600,
       parts: [],
-      text: ['love', 'for', 'you'],
+      text: ['love', 'for', 'you', '小', '一', '弛'],
       textSize: 30,
       glowSize: 20,
       trailSize: 0.9,
