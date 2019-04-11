@@ -2,8 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import HelloWorld from '@/components/HelloWorld'
-import TrailingEffect from '@/page/practice/canvas/trailing-effect'
-import TrailingEffectYichi from '@/page/practice/canvas/trailing-effect-yichi'
+
+import index from '@/page/index'
+import trailingEffect from '@/page/practice/canvas/trailing-effect'
+import trailingEffectYichi from '@/page/practice/canvas/trailing-effect-yichi'
 
 Vue.use(Router)
 
@@ -11,18 +13,23 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'index',
+      component: index
+    },
+    {
+      path: '/helloworld',
       name: 'HelloWorld',
       component: HelloWorld
     },
     {
       path: '/trailing-effect',
-      name: 'TrailingEffect',
-      component: TrailingEffect
+      name: 'trailingEffect',
+      component: trailingEffect
     },
     {
       path: '/lovexiaoyichi',
-      name: 'TrailingEffectYichi',
-      component: TrailingEffectYichi
+      name: 'trailingEffectYichi',
+      component: trailingEffectYichi
     }
   ]
 })

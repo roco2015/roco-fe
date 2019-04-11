@@ -21,7 +21,7 @@ export default {
       maxTime: 10000,
       batchCount: 1, // 同时刷新出来一批的数量
       limitCount: 100,
-      pullRadius: 100,
+      pullRadius: 300,
       pullVelocity: 7,
       mouseX: -10000,
       mouseY: -10000
