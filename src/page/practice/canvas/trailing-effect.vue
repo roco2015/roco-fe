@@ -13,15 +13,15 @@ export default {
       width: 800,
       height: 600,
       parts: [],
-      text: '100',
+      text: ['love', 'for', 'you'],
       textSize: 30,
       glowSize: 20,
       trailSize: 0.9,
       minTime: 3000,
       maxTime: 5000,
-      batchCount: 10, // 同时刷新出来一批的数量
-      limitCount: 100,
-      pullRadius: 50,
+      batchCount: 1, // 同时刷新出来一批的数量
+      limitCount: 10,
+      pullRadius: 500,
       pullVelocity: 7,
       mouseX: -10000,
       mouseY: -10000
@@ -32,20 +32,25 @@ export default {
     this.height = window.innerHeight
   },
   mounted () {
+    let canvas = document.getElementById('trailing-effect-canvas')
     window.addEventListener('resize', () => {
       this.width = window.innerWidth
       this.height = window.innerHeight
     })
-    window.addEventListener('mousemove', (e) => {
+    canvas.addEventListener('mousemove', (e) => {
       this.mouseX = e.clientX
       this.mouseY = e.clientY
     })
-    window.addEventListener('touchmove', (e) => {
+    canvas.addEventListener('touchmove', (e) => {
       this.mouseX = e.changedTouches[0].pageX
       this.mouseY = e.changedTouches[0].pageY
     })
+    canvas.addEventListener('mouseleave', () => {
+      this.mouseX = -this.pullRadius
+      this.mouseY = -this.pullRadius
+    })
 
-    this.ctx = document.getElementById('trailing-effect-canvas').getContext('2d')
+    this.ctx = canvas.getContext('2d')
 
     // setInterval(this.createPart, 300)
     // setInterval(this.render, 17)
@@ -70,8 +75,21 @@ export default {
         vy: Math.random() * 2 - 1,
         ts: Date.now(),
         tl: Math.random() * (this.maxTime - this.minTime) + this.minTime,
-        h: Math.random() * (320 - 170) + 170
+        h: Math.random() * (320 - 170) + 170,
+        text: this.getDrawText()
       }
+    },
+
+    getDrawText () {
+      let random = Math.random() * 100
+      let result = 'error'
+      switch (true) {
+        case random < 40: result = this.text[0]; break
+        case random < 70: result = this.text[1]; break
+        case random < 100: result = this.text[2]; break
+        default: result = this.text[0]; break
+      }
+      return result
     },
 
     draw () {
@@ -88,8 +106,8 @@ export default {
         ctx.shadowBlur = this.glowSize
         ctx.font = 'bold ' + this.textSize + 'px sans-serif'
         // 这里坐标为什么带上textSize一起？
-        ctx.strokeText(this.text, part.x - this.textSize, part.y + this.textSize / 2)
-        ctx.fillText(this.text, part.x - this.textSize, part.y + this.textSize / 2)
+        ctx.strokeText(part.text, part.x - this.textSize, part.y + this.textSize / 2)
+        ctx.fillText(part.text, part.x - this.textSize, part.y + this.textSize / 2)
         ctx.closePath()
       })
     },
