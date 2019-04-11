@@ -13,7 +13,7 @@ export default {
       width: 800,
       height: 600,
       parts: [],
-      text: ['love', 'for', 'you'],
+      text: ['love', 'for', 'you', '小', '一', '弛'],
       textSize: 30,
       glowSize: 20,
       trailSize: 0.9,
@@ -80,15 +80,8 @@ export default {
     },
 
     getDrawText () {
-      let random = Math.random() * 100
-      let result = 'error'
-      switch (true) {
-        case random < 40: result = this.text[0]; break
-        case random < 70: result = this.text[1]; break
-        case random < 100: result = this.text[2]; break
-        default: result = this.text[0]; break
-      }
-      return result
+      let index = Math.floor(Math.random() * this.text.length)
+      return this.text[index]
     },
 
     draw () {
