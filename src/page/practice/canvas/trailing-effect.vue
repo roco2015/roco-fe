@@ -18,9 +18,9 @@ export default {
       glowSize: 20,
       trailSize: 0.9,
       minTime: 3000,
-      maxTime: 5000,
+      maxTime: 20000,
       batchCount: 1, // 同时刷新出来一批的数量
-      limitCount: 10,
+      limitCount: 100,
       pullRadius: 500,
       pullVelocity: 7,
       mouseX: -10000,
@@ -52,9 +52,9 @@ export default {
 
     this.ctx = canvas.getContext('2d')
 
-    // setInterval(this.createPart, 300)
+    setInterval(this.createPart, 300)
     // setInterval(this.render, 17)
-    requestAnimationFrame(this.createPart)
+    // requestAnimationFrame(this.createPart)
     requestAnimationFrame(this.render)
   },
   methods: {
@@ -64,7 +64,6 @@ export default {
           this.parts.push(this.getPartParam())
         }
       }
-      requestAnimationFrame(this.createPart)
     },
 
     getPartParam () {
